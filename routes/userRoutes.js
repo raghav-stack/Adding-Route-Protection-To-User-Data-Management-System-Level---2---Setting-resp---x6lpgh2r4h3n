@@ -20,7 +20,7 @@ router.patch("/:id", protectUserRoutes, grantAccessTo(["user", "admin", "superad
 router.post("/", grantAccessTo(["guest", "user", "admin", "superadmin"]), createUser);
 
 // Add a middleware to protect admin routes to GET and DELETE Routes below
-router.get("/", grantAccessTo(["admin", "superadmin"]), getAllUsers);
-router.delete("/:id", grantAccessTo(['superadmin']), deleteUser);
+router.get("/", protectAdminRoutes, grantAccessTo(["admin", "superadmin"]), getAllUsers);
+router.delete("/:id", protectAdminRoutes, grantAccessTo(['superadmin']), deleteUser);
 
 module.exports = router;
